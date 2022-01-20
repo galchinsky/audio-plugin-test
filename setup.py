@@ -9,10 +9,13 @@ except ImportError:
 
 setup(
     name="audio-plugin-test",
-    version="0.0.1",
+    version="0.0.3",
+    url="https://github.com/galchinsky/audio-plugin-test",
     description="Test VST effects in python",
     author='Dmitry Galchinsky',
+    author_email='galchinsky@gmail.com',
     license="GPLv3",
+    classifiers=['Development Status :: 2 - Pre-Alpha'],
     packages=['audio_plugin_test'],
     package_dir={'': 'source'},
     cmake_install_dir='source/audio_plugin_test'

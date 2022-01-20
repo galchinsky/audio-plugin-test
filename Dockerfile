@@ -25,19 +25,9 @@ RUN apt-get update -yq \
 
 RUN apt-get install -yq python3-pip git libopencv-dev
 RUN pip install numpy matplotlib
+RUN pip install audio-plugin-test==0.0.3
 
-# clone repo
-#RUN git clone https://github.com/galchinsky/
-## or copy:
-WORKDIR /aptest
-COPY pyproject.toml .
-COPY setup.py .
-COPY dryjuce dryjuce
-COPY source source
-COPY CMakeLists.txt .
+COPY test.py test.py
+COPY AIBase.vst3 AIBase.vst3
 
-#WORKDIR /aptest/build
-#RUN cmake .. -DCMAKE_BUILD_TYPE=Debug
-#RUN make -j6
-
-RUN pip install .
+RUN python3 test.py

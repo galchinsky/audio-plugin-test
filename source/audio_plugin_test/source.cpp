@@ -18,6 +18,10 @@ namespace wrap {
             Plugin (path, index, sr, bs)
         { }
 
+        int wrapperGetLatency() {
+            return Plugin::getLatency();
+        }
+
         void wrapperRenderEffect(np::ndarray arr) {
             if (arr.get_dtype() != np::dtype::get_builtin<float>()) {
                 throw WrongInputShape();
@@ -118,6 +122,7 @@ BOOST_PYTHON_MODULE(libaptest)
 
     class_<PluginWrapper, boost::noncopyable>("Plugin",
                                               init<const std::string&, int, int, int>())
+    .def("get_latency", &PluginWrapper::wrapperGetLatency)
     .def("render_effect", &PluginWrapper::wrapperRenderEffect)
     .def("update_parameters", &PluginWrapper::wrapperUpdateParameters)
     .def("set_parameter", &PluginWrapper::wrapperSetParameter)

@@ -42,7 +42,7 @@ target_compile_definitions(aptest
 find_package(PythonLibs REQUIRED)
 find_package(Boost COMPONENTS python COMPONENTS numpy REQUIRED)
 
-target_include_directories(aptest PRIVATE ${PYTHON_INCLUDE_DIRS})
+target_include_directories(aptest SYSTEM PRIVATE ${PYTHON_INCLUDE_DIRS})
 
 target_link_libraries(aptest
     PRIVATE

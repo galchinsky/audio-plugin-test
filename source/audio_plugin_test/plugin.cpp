@@ -56,12 +56,16 @@ void Plugin::loadPlugin (const std::string& path, int index) {
     throw LoadPluginError(errorMessage.toStdString());
 }
 
+int Plugin::getLatency() {
+    return plugin->getLatencySamples();
+}
+
 void Plugin::renderEffect(size_t nb_channels, std::vector<float>& wav) {
     MidiBuffer midiNoteBuffer;
 
     size_t wav_size = wav.size();
     size_t renderLength = wav_size / nb_channels;
-    size_t numberOfBuffers = size_t (std::ceil (renderLength / bufferSize));
+    size_t numberOfBuffers = size_t (std::ceil (renderLength / bufferSize)) + 1;
 
     AudioSampleBuffer audioBuffer (plugin->getTotalNumOutputChannels(),
                                    bufferSize);

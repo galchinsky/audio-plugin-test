@@ -39,6 +39,7 @@ public:
                               OwnedArray<PluginDescription>& pluginDescriptions,
                               KnownPluginList& pluginList);
 
+    int getLatency();
     void renderEffect(size_t nb_channels, std::vector<float>& wav);
 
     double sampleRate;
